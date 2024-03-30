@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashCraft:Dashboard</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='dashboard.css')}}">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{{url_for('static',filename='logo.jpg')}}" alt="">
+                    <h2 >Cash<span class="danger">Craft</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="{{url_for('landingpage')}}">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Home</h3>
+                </a>
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">person</span>
+                    <h3>Customers</h3>
+                </a>
+                <a href="{{url_for('add_transaction')}}">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Add Transaction</h3>
+                </a>
+                <a href="{{url_for('view_transactions')}}">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>View Transactions</h3>
+                </a>
+                <a href="{{url_for('view_master_table')}}">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>View Master Table</h3>
+                </a>
+                <a href="{{url_for('view_notifications')}}">
+                    <span class="material-icons-sharp">mail_outline</span>
+                    <h3>Messages</h3>
+                    <span class="message-count">3</span>
+                </a>
+                <a href="{{url_for('create_category')}}">
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Create a Budget and Category</h3>
+                </a>
+                <a href="{{url_for('view_categories')}}">
+                    <span class="material-icons-sharp">settings</span>
+                    <h3>View Budget and Categories</h3>
+                </a>
+                <a href="{{url_for('logout')}}">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>  
+            </div>
+        </aside>
+
+         <main>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <input type="date">
+            </div>
+
+            <div class="insights">
+                <div class="sales">
+                    <span class="material-icons-sharp">analytics</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Balance</h3>
+                            <h1>${{ balance }}</h1>
+                           </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r='36'></circle>
+                            </svg>
+                            <div class="number">
+                            <p>81%</p>
+                            </div>
+                        </div>
+                    </div>
+                <!-- <small class="text-muted">Last-24 hours</small> -->
+            </div>
+            <!-- end of sales -->
+            <div class="expenses">
+                <span class="material-icons-sharp">analytics</span>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Total Expenses</h3>
+                        <h1>${{total_expenses}}</h1>
+                    </div>
+                    <div class="progress">
+                        <svg>
+                            <circle cx="38" cy="38" r='36'></circle>
+                        </svg>
+                        <div class="number">
+                        <p>62%</p>
+                        </div>
+                    </div>
+                </div>
+            <!-- <small class="text-muted">Last-24hours</small> -->
+        </div>
+        <!-- end of expenses -->
+        <div class="income">
+            <span class="material-icons-sharp">analytics</span>
+            <div class="middle">
+                <div class="left">
+                    <h3>Total income</h3>
+                    <h1>${{total_income}}</h1>
+                </div>
+                <div class="progress">
+                    <svg>
+                        <circle cx="38" cy="38" r='36'></circle>
+                    </svg>
+                    <div class="number">
+                    <p>44%</p>
+                    </div>
+                </div>
+            </div>
+        <!-- <small class="text-muted">Last-24hours</small> -->
+    </div>
+    <!-- end of income -->
+</div>
+<!-- end of insights -->
+
+<div class="recent-orders">
+    <h2>Recent Transactions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr class="table-row">
+                <td>{{transaction.DateTime}}</td>
+                <td>{{transaction.Category}}</td>
+                <td>{{transaction.Description}}</td>
+                <td>{{transaction.Amount}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{url_for('view_transactions')}}">Show All</a>
+</div>
+        </main> 
+        <!-- end of main -->
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode </span>
+                    <span class="material-icons-sharp">dark_mode </span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey,<b>Sloth</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="{{url_for('static',filename='sloth.jpeg')}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- end of top -->
+            <div class="recent-updates">
+                <h2>Recent updates</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="{{url_for('static',filename='sloth.jpeg')}}" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Sloth</b> Your transaction was listed and the mail was send</p>
+                            <small class="text-muted">5-minutes ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="{{url_for('static',filename='sloth.jpeg')}}" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Sloth</b> Your transaction was listed and the mail was send</p>
+                            <small class="text-muted">30-minutes ago</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="{{url_for('static',filename='sloth.jpeg')}}" alt="">
+                        </div>
+                        <div class="message">
+                            <p><b>Sloth</b> Your transaction was listed and the mail was send</p>
+                            <small class="text-muted">5-hours ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of recent updates -->
+            
+        </div>
+    </div> 
+    <script src="{{url_for('static',filename='dasboard.js')}}"></script>
+</body>
+</html>

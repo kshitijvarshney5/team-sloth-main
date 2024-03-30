@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a category and a budget</title>
+    <!--link href="{{url_for('static', filename = 'styles.css')}}" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+<body bgcolor="#F8F1F1">
+    {% with messages= get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    <p style="color:rgb(0, 255, 68);">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <
+    <form action="{{url_for('create_category')}}" method="POST" style="margin-left: 40%;margin-top: 5%;">
+        <label for="category" style="color:#025464;">Category Name</label><br>
+        <input type="text" name="category" placeholder="Enter Category" required autofocus><br><br>
+        <label style="color:#025464;" for="amount">Budget</label><br>
+        <input type="number" name="budget" placeholder="Enter Amount" required autofocus><br><br>
+        <p style="color:#025464;">Select Type</p>
+        <input type="radio" id="income" name="type" value="Income">
+        <label for="Income">Income</label><br>
+        <input type="radio" id="Expense" name="type" value="Expense">
+        <label for="Expense">Expense</label><br><br><br>
+
+
+        <button style="color:aliceblue; background-color:#025464;" ><h3>Add Category</h3></button>
+
+    </form>
+</body>

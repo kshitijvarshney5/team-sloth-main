@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <style>
+                    body {
+            font-family: 'lato', sans-serif;
+            }
+            .container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+            }
+
+            h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+                
+            }
+
+            
+            .th
+            {
+                border-radius: 3px;
+                padding: 25px 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+            .table-header {
+                background-color: #025464;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+            }
+            .table-row {
+                background-color: #ffffff;
+                box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+            }
+            .searchfield {
+                width: 80%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin: 10px 0;
+                padding: 10px;
+                box-sizing: border-box;
+                margin-left: 10%;
+            }
+         
+        </style>
+    <head>
+        <title>
+            Transactions
+        </title>
+    </head>
+    <body bgcolor="#F8F1F1">
+        <h2>Transactions</h2>
+        <!-- The Search field -->
+        <form action="{{url_for('view_transactions')}}" method="POST">
+            <input type="search" placeholder="Search Transactions by Name, Date, Amount ..." name="searchfield" class="searchfield"/>
+        </form>
+        
+        <a href="{{url_for('add_transaction')}}"><input type="submit" value="Add Transaction" style="margin-left:75%;"></a><br><br>
+        <table style="width:100%" class="container" class="live-search-list">
+            <tr class="table-header">
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+            {% for transaction in transactions %}
+                <tr class="table-row">
+                <td>{{transaction.DateTime}}</td>
+                <td>{{transaction.Category}}</td>
+                <td>{{transaction.Description}}</td>
+                <td>{{transaction.Amount}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <style>
+                    body {
+            font-family: 'lato', sans-serif;
+            }
+            .container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+            }
+
+            h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+                
+            }
+
+            
+            .th
+            {
+                border-radius: 3px;
+                padding: 25px 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+            .table-header {
+                background-color: #025464;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+            }
+            .table-row {
+                background-color: #ffffff;
+                box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+            }
+         
+        </style>
+    <head>
+        <title>
+            My Categories
+        </title>
+    </head>
+    <body bgcolor="#F8F1F1">
+        {% with messages= get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    <p style="color:red;border-style: solid;">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h2>Categories</h2>
+        <a href="{{url_for('create_category')}}"><input type="submit" value="Add a new Category" style="margin-left:75%;"></a><br>
+        <table style="width:100%" class="container">
+            <tr class="table-header">
+              <th>Type</th>
+              <th>Category Name</th>
+              <th>Budget</th>
+              <!-- <th>Edit/Delete</th> -->
+            </tr>
+            {% for category in categories %}
+                <tr class="table-row">
+                    <td>{{category.Type}}</td>
+                    <td>{{category.Category}}</td>
+                    <td>{{category.Budget}}</td>
+                </tr>
+            {% endfor %}
+          </table>
+
+    </body>
+</html>

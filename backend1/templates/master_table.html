@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <style>
+                    body {
+            font-family: 'lato', sans-serif;
+            }
+            .container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+            }
+
+            h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+                
+            }
+
+            
+            .th
+            {
+                border-radius: 3px;
+                padding: 25px 30px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 25px;
+            }
+            .table-header {
+                background-color: #025464;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+            }
+            .table-row {
+                background-color: #ffffff;
+                box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+            }
+         
+        </style>
+    <head>
+        <title>
+            Master table
+        </title>
+    </head>
+    <body bgcolor="#F8F1F1">
+        <h2 style="margin-left:0%";>Overview</h2><br><br>
+        <h4 style="margin-left: 45%;">Income</h4>
+        <table style="width:100%" class="container">
+            <tr class="table-header">
+              <th>Category</th>
+              <th>Plan</th>
+              <th>Actual</th>
+            </tr>
+            {% for categoryName1 in income_overview %}
+                {% for categoryName2 in income_expectations %}
+                    {% if categoryName1==categoryName2 %}
+                        <tr class="table-row">
+                            <td>{{ categoryName1 }}</td>
+                            <td>{{ income_expectations[categoryName2] }}</td> 
+                            <td>{{ income_overview[categoryName1]/2 }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            <tr class="table-header">
+                <th>total</th>
+                <th>{{ total_income_plan }}</th>
+                <th>{{ total_income_actual }}</th>
+              </tr>
+          </table>
+          <h4 style="margin-left: 45%;">Expenses</h4>
+          <table style="width:100%" class="container">
+            <tr class="table-header">
+              <th>Category</th>
+              <th>Plan</th>
+              <th>Actual</th>
+            </tr>
+            <tr>
+            {% for categoryName1 in expense_overview %}
+                {% for categoryName2 in expense_expectations %}
+                    {% if categoryName1==categoryName2 %}
+                        <tr class="table-row">
+                            <td>{{ categoryName1 }}</td>
+                            <td>{{ expense_expectations[categoryName2] }}</td> 
+                            <td>{{ expense_overview[categoryName1]/2 }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </tr>
+            <tr class="table-header">
+                <th>total</th>
+                <th>{{ total_expense_plan }}</th>
+                <th>{{ total_expense_actual }}</th>
+              </tr>
+          </table>
+
+    </body>
+</html>

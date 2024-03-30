@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashCraft-"The future of cash flow"</title>
+    <link href="{{url_for('static', filename = 'stylesLand.css')}}" rel="stylesheet">
+        
+</head>
+<body>
+    
+  <div class="background">
+    <nav class="navbar">
+      <div class="logoandtitle">
+        <img class="logolanding" src="{{url_for('static', filename='logo.jpg')}}">
+        <div class="titlelogo">CashCraft</div> 
+       
+      </div>
+      
+      <!-- NAVIGATION MENU -->
+      <ul class="nav-links">
+  
+        <!-- NAVIGATION MENUS -->
+        <div class="menu">
+  
+          <li><a href="/"  id="section1">Home </a></li>
+          <li><a href="/">About </a></li>
+  
+          <li class="services">
+            <a href="/"  id="section3">Services </a>
+  
+            <!-- <ul class="dropdown">
+              <li><a href="/" id="section3">Expense Tracking </a></li>
+              <li><a href="/" id="section3">Budget Management</a></li>
+              <li><a href="/" id="section3">Financial Insight</a></li>
+               <li><a href="/">Dropdown 3</a></li> -->
+              <!-- <li><a href="/">Dropdown 4</a></li> 
+            </ul> -->
+  
+          </li>
+  
+          <li><a href="/" id="section4">Finance </a></li>
+          <li><a href="/"  id="section5">Contact </a></li>
+        </div>
+      </ul>
+      <ul  class="menu2">
+        {% if loggedIn %}
+          <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+          <li><a href="{{url_for('logout')}}">Logout</a></li>
+        {% else %}
+          <li><a href="{{url_for('form_login')}}">Login</a></li>
+          <li><a href="{{url_for('form_registration')}}">Sign Up</a></li>
+        {% endif %}
+      </ul>
+
+    </nav>
+    <div class="container">
+      <div class="left-text">
+         <h2>CashCraft: Empowering Personal Finance Management</h2>
+         <p>"Empower Your Finances: Track, Manage, and Thrive. Streamline your personal finances with our user-friendly web app. Experience seamless user registration, authentication, expense tracking, budget management, financial insights, notifications, and reminders. Take control of your financial future today!"</p>
+         <button class="button-30" role="button">Try for Free</button>
+        </div>
+        <div class="img1"><img src="{{url_for('static',filename='iimg1.jpeg')}}" alt=""></div>
+    </div>
+  </div>
+  <!-- details -->
+  <div class="background1">
+  <div class="detailss" id="section2">
+    <div class="text">
+  <h1>Services we provide</h1>
+  <p>CashCraft is a comprehensive web application designed to help users track their personal finances and manage expenses effectively. With a user-friendly interface and a range of powerful features, FinTrack streamlines financial management and provides valuable insights to achieve financial goals.</p>
+    <p>Key Features :</p>
+    <h3>1. User Registration and Authentication:</h3>
+    <ul>
+      <li>Securely register and create an account to access the application.</li>
+      <li>Authenticate users to ensure data privacy and protection</li>
+    </ul>
+    <h3>2.Expense Tracking: </h3>
+    <ul>
+      <li> Easily record and categorize expenses in real-time.</li>
+      <li>Set custom spending categories and subcategories for better organization.</li>
+      <li>Attach receipts or invoices for future reference.</li>
+    </ul>
+    <h3>3.Budget Management:</h3>
+    <ul>
+      <li>Create personalized budgets based on income and expense categories.</li>
+      <li>Monitor budget progress with visual representations and detailed reports.</li>
+    </ul>
+    <h3>4.Financial Insight:</h3>
+    <ul>
+      <li>Generate reports and visualizations to understand financial habits.</li>
+      <li>Analyze income vs. expenses, savings ratio, and other key metrics.</li>
+    </ul>
+  </div>
+    <div><img class="img2" src="{{url_for('static',filename='budget.jpeg')}}" alt=""></div>
+  </div>
+   
+  </div>
+    
+  </div>
+  <div class="background">
+  <div class="container1">
+    <div class="content1">
+      <div class="left-side">
+        <div class="address details">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">Surkhet, NP12</div>
+          <div class="text-two">Birendranagar 06</div>
+        </div>
+        <div class="phone details">
+          <i class="fas fa-phone-alt"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">+0098 9893 5647</div>
+          <div class="text-two">+0096 3434 5678</div>
+        </div>
+        <div class="email details">
+          <i class="fas fa-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">mrsloth@gmail.com</div>
+          <div class="text-two">info.mrsloth@gmail.com</div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="topic-text">Send us a message</div>
+        <p>If you have any work from me or any types of quries related to my tutorial, you can send me message from here. It's my pleasure to help you.</p>
+      <form action="#">
+        <div class="input-box">
+          <input type="text" placeholder="Enter your name">
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Enter your email">
+        </div>
+        <div class="input-box message-box">
+          
+        </div>
+        <div class="button">
+          <input type="button" value="Send Now" >
+        </div>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{url_for('static', filename='jsLand.js')}}"></script>
+</body>
+</html>

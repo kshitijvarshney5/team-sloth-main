@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a transaction</title>
+    <!--link href="{{url_for('static', filename = 'styles.css')}}" rel="stylesheet"-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+<body bgcolor="#F8F1F1">
+    {% with messages= get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    <p style="color:red;border-style: solid;">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <a href="{{url_for('dashboard')}}">Go back</a>
+    <form action="{{url_for('add_transaction')}}" method="POST" style="margin-left: 40%;margin-top: 5%;">
+        <label style="color:#025464;" for="description">Description</label><br>
+        <input type="text" name="description" placeholder="Enter Description" required autofocus><br><br>
+        <label style="color:#025464;" for="amount">Amount</label><br>
+        <input type="number" name="amount" placeholder="Enter Amount" required autofocus><br><br>
+        <label style="color:#025464;" for="date">Date</label><br>
+        <input type="date" name="date" placeholder="Enter Date" required autofocus><br><br>
+        <label for="category" style="color:#025464;">Category</label><br>
+        <select name="category">
+            {% for category in categories %}
+                <option value="{{category.Category}}">{{category.Category}}</option>
+            {% endfor %}
+        </select>
+        <!-- Option to add a new category, @nanditha023 please check -->
+        <!-- The button is submitting the form but we want it to redirect to create_category.html -->
+        <a href="{{url_for('create_category')}}">Create category</a><br><br> 
+        <br><br>
+        <!-- Type is auto decided by the category. Eg: If the category Food is an expense and is chosen, this transaction will be an expense -->
+        <!-- <p style="color:#025464;">Select Type</p>
+        <input type="radio" id="income" name="type" value="Income">
+        <label for="Income">Income</label><br>
+        <input type="radio" id="Expense" name="type" value="Expense">
+        <label for="Expense">Expense</label><br><br><br> -->
+
+
+        <button style="color:aliceblue; background-color:#025464;" ><h3>Add Transaction</h3></button>
+
+    </form>
+</body>
